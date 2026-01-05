@@ -33,6 +33,7 @@ public class Appointment {
 	@ManyToOne
 	private int doctorId;
 	//hehe edit honi
+	//2ns
 	private LocalDate date;
 
 }
