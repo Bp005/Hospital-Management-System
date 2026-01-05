@@ -32,7 +32,7 @@ public class Appointment {
 	private Patient patient;
 	@ManyToOne
 	private int doctorId;
-	
+	//hehe edit honi
 	private LocalDate date;
 
 }
