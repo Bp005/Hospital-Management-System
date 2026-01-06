@@ -35,7 +35,7 @@ public class AppointmentService {
         existing.setDate(appointment.getDate());
         existing.setReason(appointment.getReason());
         existing.setPatient(appointment.getPatient());
-        existing.setDoctorId(appointment.getDoctorId());
+        existing.setDoctor(appointment.getDoctor());
     	 
         return appointmentRepo.save(existing);
     }

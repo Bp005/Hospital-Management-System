@@ -4,6 +4,7 @@ package com.kec.hms.model;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -28,12 +29,10 @@ public class Appointment {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String reason;
-	@ManyToOne
 	private Patient patient;
-	@ManyToOne
-	private int doctorId;
-	//hehe edit honi
-	//2ns
+	@ManyToOne//cascades should be applied to one to many or one to one.cascademeans if u make changes to parent, then child changes accordingly.
+	
+	private Doctor doctor;
 	private LocalDate date;
 
 }
