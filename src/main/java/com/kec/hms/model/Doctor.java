@@ -30,7 +30,7 @@ public class Doctor {
 	private String password;
 	private String address;
 	private int age;
-	private int phone;
+	private String phone;
 	private String specialty; 
 
 }

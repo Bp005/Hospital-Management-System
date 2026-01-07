@@ -2,6 +2,7 @@ package com.kec.hms.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +23,10 @@ public class DoctorController {
 	@Autowired
 	private DoctorService docdervice;
 	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
+	
 	@GetMapping
 	public Page<Doctor> getAllDoctors(@RequestParam(defaultValue="0") int page, @RequestParam(defaultValue = "2") int size){//
 			
@@ -30,6 +35,7 @@ public class DoctorController {
 	
 	@PostMapping
 	public String addDoctors(@RequestBody Doctor doctor) {
+		doctor.setPassword(passwordEncoder.encode(doctor.getPassword()));
 		docdervice.addDoctor(doctor);
 		return "Doctor Added";
 	}
