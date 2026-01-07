@@ -31,7 +31,7 @@ public class Appointment {
 	@ManyToOne
 	private Patient patient;
 	@ManyToOne
-	private int doctorId;
+	private Doctor doctor;
 	
 	private LocalDate date;
 
