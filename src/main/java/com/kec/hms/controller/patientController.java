@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+
 import com.kec.hms.model.Patient;
 import com.kec.hms.service.PatientService;
 @RestController
@@ -24,6 +25,9 @@ public class patientController {
 	
 	@Autowired
 	private PatientService patientservice;
+	
+//	@Autowired
+//	private PasswordEncoder passencode;
 	
 	
 	@GetMapping
@@ -36,7 +40,7 @@ public class patientController {
 	@PostMapping
 	public String createPatient(@RequestBody Patient patient) {
 		System.out.println("creating patient");
-		
+		//patient.setPassword(passencode.encode(patient.getPassword()));
 		patientservice.addPatient(patient);
 		return "Patient added";
 	}
