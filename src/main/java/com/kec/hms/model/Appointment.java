@@ -4,6 +4,9 @@ package com.kec.hms.model;
 
 import java.time.LocalDate;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -29,13 +32,14 @@ public class Appointment {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	private String reason;
 	@ManyToOne
 	@JoinColumn(name = "patient_id")
 	private Patient patient;
 	@ManyToOne//cascades should be applied to one to many or one to one.cascademeans if u make changes to parent, then child changes accordingly.
 	@JoinColumn(name="doctorid")
 	private Doctor doctor;
+	
+	@DateTimeFormat(iso=ISO.DATE)
 	private LocalDate date;
 
 }

@@ -33,7 +33,6 @@ public class AppointmentService {
     public Appointment updateAppointment(int id, Appointment appointment) {
         Appointment existing=getAppointmentById(id);
         existing.setDate(appointment.getDate());
-        existing.setReason(appointment.getReason());
         existing.setPatient(appointment.getPatient());
         existing.setDoctor(appointment.getDoctor());
     	 

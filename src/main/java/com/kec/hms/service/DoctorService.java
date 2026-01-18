@@ -22,7 +22,7 @@ public class DoctorService {
 	
 	
 	
-	private static final Logger log=LoggerFactory.getLogger(PatientService.class);
+	private static final Logger log=LoggerFactory.getLogger(DoctorService.class);
 	public Page<Doctor> getAllDoctors(int page, int size){
 		try {
 			System.out.println("Into service layer");

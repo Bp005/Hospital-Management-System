@@ -10,6 +10,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -27,15 +29,18 @@ public class Patient {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@Column(unique=true)
+	@Column(nullable=false)
 	private String name;
-	private String password;
 	private String gender;
 	private String address;
 	private int age;
 	private String phone;
 	@DateTimeFormat(iso=ISO.DATE)
 	private LocalDate dob; 
+	
+	@OneToOne
+	@JoinColumn(name="user_id")
+	private User user;
 ///hibernate maps these data to the realational db. it is a framework
 
 }

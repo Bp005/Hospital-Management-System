@@ -10,7 +10,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kec.hms.dto.AuthRequest;
+import com.kec.hms.dto.DoctorRequest;
+import com.kec.hms.dto.PatientRequest;
+import com.kec.hms.model.Doctor;
+import com.kec.hms.model.Patient;
 import com.kec.hms.model.User;
+import com.kec.hms.repository.DoctorRepository;
+import com.kec.hms.repository.PatientRepository;
 import com.kec.hms.repository.UserRepository;
 import com.kec.hms.security.JWTUtil;
 
@@ -26,6 +32,11 @@ public class AuthController {
 	@Autowired
 	private JWTUtil jwtUtil;
 	
+	@Autowired
+	private PatientRepository patientrepo;
+	
+	@Autowired
+	private DoctorRepository doctorRepo;
 	
 	 @PostMapping("/register")
 	    public String register(@RequestBody AuthRequest request) {
@@ -39,8 +50,38 @@ public class AuthController {
 	        user.setPassword(passwordEncoder.encode(request.getPassword()));
 	        user.setRole(request.getRole());
 	        userRepo.save(user);
-	        return "User registered successfully";
+	        
+	        if ("PATIENT".equalsIgnoreCase(request.getRole())) {
+	            PatientRequest patientreq=request.getPatientRequest();
+	        	Patient patient = new Patient();
+	        	 patient.setName(patientreq.getName());
+	        	 patient.setAge(patientreq.getAge());
+	        	 patient.setGender(patientreq.getGender());
+	        	 patient.setAddress(patientreq.getAddress());
+	        	 patient.setPhone(patientreq.getPhone());
+	        	 patient.setDob(patientreq.getDob());
+	        	 patient.setUser(user);
+	        	 patientrepo.save(patient);
+
+	        }
+	        
+	        if ("DOCTOR".equalsIgnoreCase(request.getRole())) {
+	            DoctorRequest doctorReq = request.getDoctorRequest();
+
+	        	Doctor doctor = new Doctor();
+	        	doctor.setName(doctorReq.getName());
+	        	doctor.setAge(doctorReq.getAge());
+	        	doctor.setSpecialty(doctorReq.getSpecialty());
+	        	doctor.setGender(doctorReq.getGender());
+	        	doctor.setUser(user);
+	        	doctorRepo.save(doctor);
+	    
+	        }
+
+	        return request.getRole() + " registered successfully";
 	    }
+	        
+	    
 	
 	 
 	 // Login user
@@ -57,20 +98,4 @@ public class AuthController {
 	        return jwtUtil.generateToken(user.getUsername(), user.getRole());
 	    }
 
-	    // DTO for requests
-	    static class AuthRequest {
-	        private String username;
-	        private String password;
-	        private String role;
-
-	        public String getUsername() { return username; }
-	        public void setUsername(String username) { this.username = username; }
-
-	        public String getPassword() { return password; }
-	        public void setPassword(String password) { this.password = password; }
-
-	        public String getRole() { return role; }
-	        public void setRole(String role) { this.role = role; }
-	    }
-	
 }
