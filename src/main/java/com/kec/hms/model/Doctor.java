@@ -26,12 +26,11 @@ public class Doctor {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Long id;
 	
 	private String name;
-	private int age;
-	private String gender;
-	private String specialty;
+	private String email;
+	private String specialization;
 	
 	@OneToOne
 	@JoinColumn(name="user_id", referencedColumnName = "id")

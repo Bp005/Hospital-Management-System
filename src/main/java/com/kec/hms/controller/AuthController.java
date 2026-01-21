@@ -70,9 +70,7 @@ public class AuthController {
 
 	        	Doctor doctor = new Doctor();
 	        	doctor.setName(doctorReq.getName());
-	        	doctor.setAge(doctorReq.getAge());
-	        	doctor.setSpecialty(doctorReq.getSpecialty());
-	        	doctor.setGender(doctorReq.getGender());
+	        	doctor.setSpecialization(doctorReq.getSpecialty());
 	        	doctor.setUser(user);
 	        	doctorRepo.save(doctor);
 	    

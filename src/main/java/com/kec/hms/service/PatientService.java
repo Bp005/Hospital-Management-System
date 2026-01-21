@@ -10,6 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.slf4j.Logger;
 import com.kec.hms.model.Patient;
+import com.kec.hms.model.User;
 import com.kec.hms.repository.PatientRepository;
 
 
@@ -38,7 +39,7 @@ public class PatientService {
 	}
 	
 	
-	public Patient getPatientById(int id) {
+	public Patient getPatientById(Long id) {
 		try {
 			return patientrepo.findById(id).orElse(null);
 		}catch(Exception e) {
@@ -49,7 +50,7 @@ public class PatientService {
 		}
 	}
 	
-	public void  updatePatient(int id,Patient patient) {
+	public void  updatePatient(Long id,Patient patient) {
 		patient.setId(id); 
 		patientrepo.save(patient);
 	}
@@ -58,7 +59,11 @@ public class PatientService {
 		patientrepo.save(patient);
 	}
 	
-	public void deletePatient(int id) {
+	public void deletePatient(Long id) {
 		patientrepo.deleteById(id);
 	}
+	
+	public Patient findByUser(User user) {
+        return patientrepo.findByUser(user).orElse(null);
+    }
 }	

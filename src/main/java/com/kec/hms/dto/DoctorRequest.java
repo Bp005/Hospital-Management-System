@@ -5,7 +5,7 @@
 	    private String name;
 	    private int age;
 	    private String gender;
-	    private String specialty;
+	    private String specialization;
 
 	    // getters & setters
 	    public String getName() { return name; }
@@ -17,8 +17,8 @@
 	    public String getGender() { return gender; }
 	    public void setGender(String gender) { this.gender = gender; }
 
-	    public String getSpecialty() { return specialty; }
-	    public void setSpecialty(String specialty) { this.specialty = specialty; }
+	    public String getSpecialty() { return specialization; }
+	    public void setSpecialty(String specialty) { this.specialization = specialization; }
 	}
 
 
