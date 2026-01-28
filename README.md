@@ -2,7 +2,7 @@
 
 
 
-This is a **Hospital Management System (HMS) backend REST API** that I am building using **Spring Boot**.
+This is a  **Hospital Management System (HMS) backend REST API** that I am building using **Spring Boot**. I recently added frontedn part so it can be used as a full stack system.
 
 I am developing this project mainly to **learn backend development** and understand how real-world backend applications are structured. This project helps me practice concepts like REST APIs, database integration, Spring Security, and JWT authentication.
 
